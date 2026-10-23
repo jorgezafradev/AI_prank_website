@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens. Tailwind colors (bg-paper, text-ink, ...) read these variables. */
+:root {
+  --paper: #efeaf7;
+  --card: #fffdf8;
+  --ink: #1f1b3b;
+  --ink-soft: #5b5679;
+  --line: #d6cfe8;
+  --magenta: #c9246c;
+  --teal: #138a7e;
+  --sun: #ffcf3d;
+  --shadow: 0 1px 0 var(--line), 0 18px 40px -22px rgba(31, 27, 59, 0.45);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #15122b;
+    --card: #211d3f;
+    --ink: #f1ecff;
+    --ink-soft: #b5aed6;
+    --line: #3a3566;
+    --magenta: #ff5fa2;
+    --teal: #3ed3c3;
+    --sun: #ffd84d;
+    --shadow: 0 1px 0 var(--line), 0 18px 40px -22px rgba(0, 0, 0, 0.8);
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+  body {
+    @apply bg-paper font-display font-medium text-ink antialiased;
+    overflow-x: hidden;
+    /* Keep content clear of phone notches and home bars */
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :focus-visible {
+    outline: 3px solid var(--sun);
+    outline-offset: 3px;
+  }
+}
+
+/* Respect "reduce motion": shorten keyframe animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+  }
+}
